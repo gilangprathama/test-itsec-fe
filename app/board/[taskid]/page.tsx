@@ -130,7 +130,7 @@ const BoardDetail = () => {
                 Cancel
               </button>
               <button
-                className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
+                className="bg-blue-500 text-white text-xs px-4 py-2 md:px-2 md:py-1 md:text-sm md:px-4 md:py-2 rounded-lg hover:bg-blue-600 transition"
                 onClick={handleDeleteTask}
               >
                 Yes, Delete
