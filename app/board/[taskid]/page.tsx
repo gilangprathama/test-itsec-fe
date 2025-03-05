@@ -4,18 +4,8 @@ import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { format } from "date-fns";
 import Capsule from "../../components/capsule";
-
-interface Task {
-  id: number;
-  status: string;
-  title: string;
-  description?: string;
-  links: string[];
-  files: string[];
-  tags: string[];
-  created_at?: string;
-  updated_at?: string;
-}
+import TaskModal from "../../components/task-modal";
+import { Task } from "../../types/task";
 
 const API_URL = "https://67c84ea60acf98d07085f2e6.mockapi.io/api/tasks";
 
@@ -29,6 +19,8 @@ const BoardDetail = () => {
   const params = useParams();
   const taskid = params.taskid;
   const [task, setTask] = useState<Task | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   useEffect(() => {
     if (taskid) {
@@ -38,6 +30,35 @@ const BoardDetail = () => {
         .catch((err) => console.error("Failed to fetch task:", err));
     }
   }, [taskid]);
+
+  const handleUpdateTask = async (taskData: Task) => {
+    const response = await fetch(`${API_URL}/${taskid}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(taskData),
+    });
+
+    if (!response.ok) {
+      console.error("Failed to save task");
+      return;
+    }
+
+    const updatedTask = await response.json();
+    setTask(updatedTask);
+  };
+
+  const handleDeleteTask = async () => {
+    const response = await fetch(`${API_URL}/${taskid}`, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) {
+      console.error("Failed to delete task");
+      return;
+    }
+
+    router.push("/board"); // Redirect to board page after deletion
+  };
 
   if (!task) return <p>Loading...</p>;
 
@@ -78,12 +99,45 @@ const BoardDetail = () => {
       <div className="mr-0 flex items-center md:justify-end justify-center gap-2">
         <button
           className="bg-blue-500 text-white text-xs px-4 py-2 md:px-2 md:py-1 md:text-sm md:px-4 md:py-2 rounded-lg hover:bg-blue-600 transition"
+          onClick={() => setIsModalOpen(true)}
         >
           Edit task
         </button>
         <p>or</p>
-        <a href="#" className="text-red-500">Delete</a>
+        <a onClick={() => setIsDeleteModalOpen(true)} className="text-red-500 cursor-pointer">Delete</a>
       </div>
+
+      {isModalOpen && (
+        <TaskModal
+          isOpen={isModalOpen}
+          task={task}
+          onClose={() => setIsModalOpen(false)}
+          onSave={handleUpdateTask}
+        />
+      )}
+
+      {isDeleteModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-md w-96">
+            <h2 className="text-lg font-bold mb-4">Delete Task</h2>
+            <p>Are you sure you want to delete this task?</p>
+            <div className="mt-6 flex justify-end gap-2">
+              <button
+                className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400 transition"
+                onClick={() => setIsDeleteModalOpen(false)}
+              >
+                Cancel
+              </button>
+              <button
+                className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
+                onClick={handleDeleteTask}
+              >
+                Yes, Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
