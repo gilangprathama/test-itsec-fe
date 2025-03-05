@@ -9,9 +9,17 @@ interface Task {
   tags: string[];
 }
 
-export default function Card({ task }: { task: Task }) {
+interface CardProps {
+  task: Task;
+  onClick?: () => void;
+}
+
+export default function Card({ task, onClick }: CardProps) {
   return (
-    <div className="p-4 rounded-lg bg-white shadow-sm border">
+    <div
+      className="p-4 rounded-lg bg-white shadow-sm border cursor-pointer"
+      onClick={onClick}
+    >
       <p className="font-semibold">{task.title}</p>
       {task.description && (
         <p className="text-gray-500 text-sm line-clamp-2">{task.description}</p>

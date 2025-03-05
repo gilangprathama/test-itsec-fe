@@ -40,7 +40,7 @@ export default function BoardPage() {
   ];
 
   return (
-    <div>
+    <div className="md:max-w-6xl mx-auto">
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-md md:text-2xl font-bold pr-2">Hello {name}, Here's your tasks</h1>
         <button className="bg-blue-500 text-white text-xs px-2 py-1 md:text-sm md:px-4 md:py-2 rounded-lg hover:bg-blue-600 transition">
@@ -56,7 +56,11 @@ export default function BoardPage() {
               {tasks
                 .filter((task) => task.status === col.status)
                 .map((task) => (
-                  <Card key={task.id} task={task} />
+                  <Card
+                    key={task.id}
+                    task={task}
+                    onClick={() => router.push(`/board/${task.id}`)}
+                  />
                 ))}
             </div>
           </div>

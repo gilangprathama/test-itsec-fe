@@ -6,7 +6,9 @@
     "links": ["docs.google.com"],
     "files": ["poster.png"],
     "status": "todo",
-    "tags": ["design", "frontend"]
+    "tags": ["design", "frontend"],
+    "created_at": "",
+    "updated_at": ""
   },
   {
     "id": 2,
@@ -15,7 +17,9 @@
     "links": ["google.com"],
     "files": [],
     "status": "todo",
-    "tags": ["backend"]
+    "tags": ["backend"],
+    "created_at": "",
+    "updated_at": ""
   },
   {
     "id": 3,
@@ -24,7 +28,9 @@
     "links": [],
     "files": [],
     "status": "doing",
-    "tags": ["design"]
+    "tags": ["design"],
+    "created_at": "",
+    "updated_at": ""
   },
   {
     "id": 4,
@@ -33,7 +39,9 @@
     "links": ["google.com"],
     "files": [],
     "status": "doing",
-    "tags": ["backend", "frontend"]
+    "tags": ["backend", "frontend"],
+    "created_at": "",
+    "updated_at": ""
   },
   {
     "id": 5,
@@ -42,6 +50,8 @@
     "links": [],
     "files": ["logo.png"],
     "status": "done",
-    "tags": ["design", "frontend"]
+    "tags": ["design", "frontend"],
+    "created_at": "",
+    "updated_at": ""
   }
 ]
