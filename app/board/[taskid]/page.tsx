@@ -69,7 +69,7 @@ const BoardDetail = () => {
       <div className="flex items-center text-xs font-semibold text-gray-500 mb-4">
         <Link href="/board">Dashboard</Link>
         <span className="px-2">&rsaquo;</span>
-        <a href="#">{task.title}</a>
+        <a href="#" className="truncate w-1/2">{task.title}</a>
       </div>
 
       <div className="p-4 mb-4 rounded-lg bg-white shadow-sm border">

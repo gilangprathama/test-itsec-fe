@@ -20,7 +20,7 @@ export default function Card({ task, onClick }: CardProps) {
       className="p-4 rounded-lg bg-white shadow-sm border cursor-pointer"
       onClick={onClick}
     >
-      <p className="font-semibold">{task.title}</p>
+      <p className="font-semibold line-clamp-2">{task.title}</p>
       {task.description && (
         <p className="text-gray-500 text-sm line-clamp-2">{task.description}</p>
       )}
