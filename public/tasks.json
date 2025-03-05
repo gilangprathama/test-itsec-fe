@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "title": "Design User Interface",
+    "description": "It is a long established fact that a reader will be distracted",
+    "links": ["docs.google.com"],
+    "files": ["poster.png"],
+    "status": "todo",
+    "tags": ["design", "frontend"]
+  },
+  {
+    "id": 2,
+    "title": "Set Up Backend Infrastructure",
+    "description": "Prepare the server environment and database for app development.",
+    "links": ["google.com"],
+    "files": [],
+    "status": "todo",
+    "tags": ["backend"]
+  },
+  {
+    "id": 3,
+    "title": "Design a sign up page",
+    "description": "",
+    "links": [],
+    "files": [],
+    "status": "doing",
+    "tags": ["design"]
+  },
+  {
+    "id": 4,
+    "title": "Develop Authentication Module",
+    "description": "Prepare the server environment and database for app development.",
+    "links": ["google.com"],
+    "files": [],
+    "status": "doing",
+    "tags": ["backend", "frontend"]
+  },
+  {
+    "id": 5,
+    "title": "Finalize a logo",
+    "description": "Choose a logo from one of the logo directories online.",
+    "links": [],
+    "files": ["logo.png"],
+    "status": "done",
+    "tags": ["design", "frontend"]
+  }
+]
