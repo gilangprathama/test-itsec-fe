@@ -6,6 +6,7 @@ import { format } from "date-fns";
 import Capsule from "../../components/capsule";
 import TaskModal from "../../components/task-modal";
 import { Task } from "../../types/task";
+import Link from "next/link";
 
 const API_URL = "https://67c84ea60acf98d07085f2e6.mockapi.io/api/tasks";
 
@@ -66,7 +67,7 @@ const BoardDetail = () => {
     <div className="max-w-6xl mx-auto">
       <h1 className="text-2xl font-bold mb-8">Task Detail</h1>
       <div className="flex items-center text-xs font-semibold text-gray-500 mb-4">
-        <a href="/board">Dashboard</a>
+        <Link href="/board">Dashboard</Link>
         <span className="px-2">&rsaquo;</span>
         <a href="#">{task.title}</a>
       </div>

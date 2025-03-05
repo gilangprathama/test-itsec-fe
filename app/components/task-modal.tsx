@@ -14,8 +14,6 @@ interface TaskModalProps {
 }
 
 const TaskModal = ({ isOpen, task, onClose, onSave }: TaskModalProps) => {
-  if (!isOpen) return null;
-
   const [formData, setFormData] = useState<Task>(
     task || { title: "", description: "", status: "todo", links: [], files: [], tags: [] }
   );
@@ -25,6 +23,8 @@ const TaskModal = ({ isOpen, task, onClose, onSave }: TaskModalProps) => {
       setFormData(task);
     }
   }, [task]);
+  
+  if (!isOpen) return null;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;

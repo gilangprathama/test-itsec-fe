@@ -21,8 +21,9 @@ export default function BoardPage() {
     } else {
       router.push("/");
     }
+  }, [router]);
 
-    fetch(API_URL)
+  useEffect(() => {fetch(API_URL)
       .then((res) => res.json())
       .then((data) => setTasks(data))
       .catch((err) => console.error("Failed to fetch tasks:", err));
@@ -53,7 +54,7 @@ export default function BoardPage() {
   return (
     <div className="md:max-w-6xl mx-auto">
       <div className="flex items-center justify-between mb-8">
-        <h1 className="text-md md:text-2xl font-bold pr-2">Hello {name}, Here's your tasks</h1>
+        <h1 className="text-md md:text-2xl font-bold pr-2">Hello {name}, Here&apos;s your tasks</h1>
         <button
           className="bg-blue-500 text-white text-xs px-2 py-1 md:text-sm md:px-4 md:py-2 rounded-lg hover:bg-blue-600 transition"
           onClick={() => setIsModalOpen(true)}
