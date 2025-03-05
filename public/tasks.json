@@ -13,7 +13,7 @@
   {
     "id": 2,
     "title": "Set Up Backend Infrastructure",
-    "description": "Prepare the server environment and database for app development.",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent aliquam pulvinar enim a laoreet. Vivamus fermentum iaculis enim, eu feugiat massa consectetur ut. Quisque elementum leo vel enim congue dapibus. Nam ipsum urna, malesuada non blandit quis, suscipit a lacus. Fusce at elit sem.",
     "links": ["google.com"],
     "files": [],
     "status": "todo",
@@ -51,7 +51,7 @@
     "files": ["logo.png"],
     "status": "done",
     "tags": ["design", "frontend"],
-    "created_at": "",
-    "updated_at": ""
+    "created_at": "2025-03-05T14:30:00Z",
+    "updated_at": "2025-03-05T16:00:00Z"
   }
 ]

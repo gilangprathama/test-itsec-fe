@@ -14,6 +14,8 @@ interface Task {
   tags: string[];
 }
 
+const API_URL = "https://67c84ea60acf98d07085f2e6.mockapi.io/api/tasks";
+
 export default function BoardPage() {
   const [name, setName] = useState("");
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -27,10 +29,10 @@ export default function BoardPage() {
       router.push("/");
     }
 
-    fetch("/tasks.json")
+    fetch(API_URL)
       .then((res) => res.json())
       .then((data) => setTasks(data))
-      .catch((err) => console.error("Error fetching tasks:", err));
+      .catch((err) => console.error("Failed to fetch tasks:", err));
   }, []);
 
   const columns = [

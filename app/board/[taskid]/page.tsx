@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
+import { format } from "date-fns";
 import Capsule from "../../components/capsule";
 
 interface Task {
@@ -16,6 +17,13 @@ interface Task {
   updated_at?: string;
 }
 
+const API_URL = "https://67c84ea60acf98d07085f2e6.mockapi.io/api/tasks";
+
+function formatDate(dateString: string | undefined) {
+  if (!dateString) return "-";
+  return format(new Date(dateString), "dd MMM yyyy, hh:mm:ss a");
+}
+
 const BoardDetail = () => {
   const router = useRouter();
   const params = useParams();
@@ -23,15 +31,12 @@ const BoardDetail = () => {
   const [task, setTask] = useState<Task | null>(null);
 
   useEffect(() => {
-    if (!taskid) return;
-
-    fetch("/tasks.json")
-      .then((res) => res.json())
-      .then((data: Task[]) => {
-        const foundTask = data.find((t: Task) => t.id === parseInt(taskid as string));
-        setTask(foundTask || null);
-      })
-      .catch((err) => console.error("Failed to load tasks", err));
+    if (taskid) {
+      fetch(`${API_URL}/${taskid}`)
+        .then((res) => res.json())
+        .then((data) => setTask(data))
+        .catch((err) => console.error("Failed to fetch task:", err));
+    }
   }, [taskid]);
 
   if (!task) return <p>Loading...</p>;
@@ -64,8 +69,8 @@ const BoardDetail = () => {
           </div>
           <div className="md:w-1/3 w-full text-xs text-gray-500">
               <p className="font-semibold">Info</p>
-              <p>Created at: {task.created_at || "-"}</p>
-              <p>Updated at: {task.updated_at || "-"}</p>
+              <p>Created at: {formatDate(task.created_at)}</p>
+              <p>Updated at: {formatDate(task.updated_at)}</p>
           </div>
         </div>
       </div>
