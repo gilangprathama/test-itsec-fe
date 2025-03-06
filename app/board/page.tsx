@@ -36,19 +36,20 @@ export default function BoardPage() {
   ];
 
   const handleSaveTask = async (taskData: Task) => {
-    const response = await fetch(API_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(taskData),
-    });
+    try {
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(taskData),
+      });
 
-    if (!response.ok) {
-      console.error("Failed to save task");
-      return;
+      if (!response.ok) throw new Error("Failed to save task");
+
+      const newTask = await response.json();
+      setTasks((prev) => [...prev, newTask]);
+    } catch (error) {
+      console.error("Error saving task:", error);
     }
-
-    const newTask = await response.json();
-    setTasks((prev) => [...prev, newTask]);
   };
 
   return (

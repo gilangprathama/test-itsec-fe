@@ -33,32 +33,40 @@ const BoardDetail = () => {
   }, [taskid]);
 
   const handleUpdateTask = async (taskData: Task) => {
-    const response = await fetch(`${API_URL}/${taskid}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(taskData),
-    });
+    try {
+      const response = await fetch(`${API_URL}/${taskid}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(taskData),
+      });
 
-    if (!response.ok) {
-      console.error("Failed to save task");
-      return;
+      if (!response.ok) {
+        console.error("Failed to save task");
+        return;
+      }
+
+      const updatedTask = await response.json();
+      setTask(updatedTask);
+    } catch (error) {
+      console.error("Error saving task:", error);
     }
-
-    const updatedTask = await response.json();
-    setTask(updatedTask);
   };
 
   const handleDeleteTask = async () => {
-    const response = await fetch(`${API_URL}/${taskid}`, {
-      method: "DELETE",
-    });
+    try {
+      const response = await fetch(`${API_URL}/${taskid}`, {
+        method: "DELETE",
+      });
 
-    if (!response.ok) {
-      console.error("Failed to delete task");
-      return;
+      if (!response.ok) {
+        console.error("Failed to delete task");
+        return;
+      }
+
+      router.push("/board");
+    } catch (error) {
+      console.error("Error delete task:", error);
     }
-
-    router.push("/board"); // Redirect to board page after deletion
   };
 
   if (!task) return <p>Loading...</p>;
