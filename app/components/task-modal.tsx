@@ -23,7 +23,7 @@ const TaskModal = ({ isOpen, task, onClose, onSave }: TaskModalProps) => {
       setFormData(task);
     }
   }, [task]);
-  
+
   if (!isOpen) return null;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -42,7 +42,6 @@ const TaskModal = ({ isOpen, task, onClose, onSave }: TaskModalProps) => {
 
   const handleSubmit = () => {
     onSave(formData);
-    // setFormData({ title: "", description: "", status: "todo", links: [], files: [], tags: [] });
     onClose();
   };
 
